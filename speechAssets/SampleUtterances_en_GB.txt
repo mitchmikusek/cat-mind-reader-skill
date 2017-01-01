@@ -1,0 +1,4 @@
+GetKittyThoughtIntent what's on your mind
+GetKittyThoughtIntent what are you thinking
+GetKittyThoughtIntent what's on his mind
+GetKittyThoughtIntent what is he thinking
