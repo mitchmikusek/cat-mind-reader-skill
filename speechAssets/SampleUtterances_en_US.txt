@@ -2,3 +2,6 @@ GetKittyThoughtIntent what's on your mind
 GetKittyThoughtIntent what are you thinking
 GetKittyThoughtIntent what's on his mind
 GetKittyThoughtIntent what is he thinking
+
+GetKittyGenderThoughtIntent what's on her mind
+GetKittyGenderThoughtIntent what is she thinking

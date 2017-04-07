@@ -21,9 +21,16 @@ const languageStrings = {
             THOUGHTS: [
               "I want tunt.",
               "I want tuna.",
+              "I want chicken.",
+              "I want treats. Moar treats!",
+              "I want play with a string.",
+              "I want to go outside.",
+              "I want to watch a bird.",
               "I love Dad.",
               "I love Mom.",
               "I love Totoro.",
+              "Hooo mun slave, feed me.",
+              "I buried some treasure for you.",
               "Fudge that thing in paticular.",
               "I think it is time for a cat nap."
             ],
@@ -32,7 +39,8 @@ const languageStrings = {
               "Meow.",
               "Meow Meow.",
               "Mew.",
-              "Mew Mew."
+              "Mew Mew.",
+              "Purr, Purr"
             ],
             SKILL_NAME: 'American Cat Thoughts',
             HELP_MESSAGE: 'You can say what\'s on kitty\'s mind, or, you can say exit... What can I help you with?',
@@ -42,22 +50,30 @@ const languageStrings = {
     },
     'en-GB': {
       translation: {
-        THOUGHTS: [
-          "I want tunt.",
-          "I want tuna.",
-          "I love Dad.",
-          "I love Mom.",
-          "I love Totoro.",
-          "Fudge that thing in paticular.",
-          "I think it is time for a cat nap."
-        ],
-        CAT_SOUNDS:[
-          "",
-          "Meow.",
-          "Meow Meow.",
-          "Mew.",
-          "Mew Mew."
-        ],
+          THOUGHTS: [
+            "I want tunt.",
+            "I want tuna.",
+            "I want chicken.",
+            "I want treats. Moar treats!",
+            "I want play with a string.",
+            "I want to go outside.",
+            "I want to watch a bird.",
+            "I love Dad.",
+            "I love Mom.",
+            "I love Totoro.",
+            "Hooo mun slave, feed me.",
+            "I buried some treasure for you.",
+            "Fudge that thing in paticular.",
+            "I think it is time for a cat nap."
+          ],
+          CAT_SOUNDS:[
+            "",
+            "Meow.",
+            "Meow Meow.",
+            "Mew.",
+            "Mew Mew.",
+            "Purr, Purr"
+          ],
         SKILL_NAME: 'British Cat Thoughts',
         HELP_MESSAGE: 'You can say What\'s on kitty\'s mind, or, you can say exit... What can I help you with?',
         HELP_REPROMPT: 'What can I help you with?',
@@ -72,6 +88,9 @@ const handlers = {
     },
     'GetKittyThoughtIntent': function () {
         this.emit('GetThoughts');
+    },
+    'GetKittyGenderThoughtIntent': function () {
+        this.emit('GetUpsetThoughts');
     },
     'GetThoughts': function () {
         // Get a random Cat Thought from the Thoughts list
@@ -90,7 +109,20 @@ const handlers = {
 
         // Create speech output
         const speechOutput = randomPreSound + ' ' + randomThought + ' ' + randomPostSound;
-        this.emit(':tellWithCard', speechOutput, this.t('SKILL_NAME'), randomThought);
+        this.emit(':tellWithCard', speechOutput, this.t('SKILL_NAME'), speechOutput);
+    },
+    'GetUpsetThoughts': function () {
+        // Get a random pre and post Cat Sound from the Sounds list
+        // Use this.t() to get corresponding language data
+        const catSoundsArr = this.t('CAT_SOUNDS');
+        const catPreSoundsIndex = Math.floor(Math.random() * catSoundsArr.length);
+        const randomPreSound = catSoundsArr[catPreSoundsIndex];
+        const catPostSoundsIndex = Math.floor(Math.random() * catSoundsArr.length);
+        const randomPostSound = catSoundsArr[catPostSoundsIndex];
+
+        // Create speech output
+        const speechOutput = randomPreSound + ' ' + 'Hey Asshole, I\'m a guy. Get it right! '+ ' ' + randomPostSound + '...Bitch...';
+        this.emit(':tellWithCard', speechOutput, this.t('SKILL_NAME'), speechOutput);
     },
     'AMAZON.HelpIntent': function () {
         const speechOutput = this.t('HELP_MESSAGE');

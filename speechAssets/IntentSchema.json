@@ -4,6 +4,9 @@
       "intent": "GetKittyThoughtIntent"
     },
     {
+      "intent": "GetKittyGenderThoughtIntent"
+    },
+    {
       "intent": "AMAZON.HelpIntent"
     },
     {
